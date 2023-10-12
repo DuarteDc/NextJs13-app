@@ -1,5 +1,6 @@
 import NextAuth, { AuthOptions } from 'next-auth'
-import GoogleProvider from 'next-auth/providers/google'
+import GoogleProvider from 'next-auth/providers/google';
+import FacebookProvider from 'next-auth/providers/facebook';
 
 export const authOptions: AuthOptions = {
     pages: {
@@ -19,6 +20,10 @@ export const authOptions: AuthOptions = {
                     image: profile.picture,
                 }
             }
+        }),
+        FacebookProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID as string,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
         })
     ]
 };
