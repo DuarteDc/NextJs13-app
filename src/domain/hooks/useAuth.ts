@@ -1,8 +1,9 @@
-import { LoginDto, LoginUserByGoogleDto, ResetPasswordDto } from '@/infraestructure/dto/auth';
-import { useAppDispatch } from '@/infraestructure/store/hooks';
-import { authService } from '../services/auth.service';
 import { useState } from 'react';
 
+import { authService } from '../services/auth.service';
+import { useAppDispatch } from '@/infraestructure/store/hooks';
+
+import { LoginDto, LoginUserByGoogleDto, ResetPasswordDto } from '@/infraestructure/dto/auth';
 
 export const useAuth = () => {
 

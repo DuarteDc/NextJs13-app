@@ -41,3 +41,12 @@ export const forgotPassword = (resetPasswordDto: ResetPasswordDto): ThunkAction<
             throw error
         }
     }
+
+export const signInNextAuth = async (loginDto: LoginDto): Promise<LoginResponseDto | undefined> => {
+    try {
+        const response = await http.post<LoginResponseDto, LoginDto>('/auth/login', loginDto);
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}

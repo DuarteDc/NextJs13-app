@@ -18,7 +18,7 @@ export const Input = ({ label, name, placeholder, type = "text", icon, register,
             <label htmlFor={name}>{label}</label>
             <span className="flex items-center mt-2">
                 <input
-                    className="placeholder:text-slate-800 block bg-zinc-800 w-full border border-none rounded-md px-5 py-4 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"
+                    className="placeholder:text-slate-800 block bg-zinc-800 w-full border border-none rounded-md px-5 py-4 lg:py-6 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"
                     placeholder={placeholder}
                     type={type} autoComplete="false"
                     {...register(name, { required: true })}
@@ -32,7 +32,7 @@ export const Input = ({ label, name, placeholder, type = "text", icon, register,
                 } */}
             </span>
              {
-                error &&<p className="my-2 text-[10px] text-red-600">{error}</p>
+                error &&<p className="my-2 text-[10px] text-red-500">{error}</p>
              }
         </div>
 
