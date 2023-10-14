@@ -7,8 +7,8 @@ import { RootState } from '../store/store';
 import { LoginDto, LoginResponseDto, LoginUserByGoogleDto, ResetPasswordDto } from '../dto/auth/';
 
 import { login } from '../store/reducers/auth/auth.reducer';
-
 import { setCookie } from '../cookie/cookie';
+import { errorNotification, successNotification } from '../alerts/alerts';
 
 export const signIn = (loginDto: LoginDto): ThunkAction<object, RootState, unknown, AnyAction> =>
     async dispatch => {
@@ -17,7 +17,7 @@ export const signIn = (loginDto: LoginDto): ThunkAction<object, RootState, unkno
             dispatch(login(new User(user._id, user.name, user.last_name, user.email)));
             setCookie('token', token);
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
     }
 
@@ -35,10 +35,11 @@ export const signInByGoogle = (loginUserByGoogleDto: LoginUserByGoogleDto): Thun
 export const forgotPassword = (resetPasswordDto: ResetPasswordDto): ThunkAction<object, RootState, unknown, AnyAction> =>
     async dispatch => {
         try {
-            const response = await http.post<any, ResetPasswordDto>('/auth/forgot-password', resetPasswordDto);
+            const { message } = await http.post<any, ResetPasswordDto>('/auth/forgot-password', resetPasswordDto);
+            successNotification(message);
             return true;
         } catch (error) {
-            throw error
+            return errorNotification(error as string);
         }
     }
 

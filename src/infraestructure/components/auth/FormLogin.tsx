@@ -21,28 +21,26 @@ export const FormLogin = () => {
     const { loading } = useAuth();
 
     return (
-        <form className="mb-5 lg:mb-40 mt-10" onSubmit={handleSubmit(onSubmit)} method="post">
+        <form className="lg:mb-40 mt-10" onSubmit={handleSubmit(onSubmit)} method="post">
             <Input
                 label="Correo"
                 name="email"
                 type="email"
                 placeholder="mail@example.com"
-                icon={<EmailIcon />}
                 register={register}
                 error={errors.email?.message}
             />
             <Input
                 label="Contraseña"
                 name="password"
-                icon={<EyeOff />}
                 type="password"
                 register={register}
                 error={errors.password?.message}
-                placeholder="password"
+                placeholder="Contraseña"
             />
-            <span className="flex flex-row-reverse w-full mt-5 mr-5 cursor-pointer text-gray-400 font-bold text-base">
+            <span className="flex flex-row-reverse w-full mt-5 mr-5 cursor-pointer text-gray-400 font-bold text-sm">
                 <Link href="/auth/forgot-password">
-                    Forgot password?
+                    Olvide mi contraseña
                 </Link>
             </span>
             <button
