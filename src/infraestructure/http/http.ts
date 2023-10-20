@@ -30,7 +30,7 @@ const get = async <T>(url: string): Promise<T> => {
     }
 }
 
-const post = async <T, K>(url: string, body: K, headers?: object): Promise<T> => {
+const post = async <T>(url: string, body: any, headers?: object): Promise<T> => {
     try {
         const { data } = await apiInstance.post(url, body, {
             headers: {

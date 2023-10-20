@@ -1,21 +1,23 @@
-import { configureStore, combineReducers, applyMiddleware } from '@reduxjs/toolkit';
-import thunk from 'redux-thunk';
+import { configureStore, combineReducers, applyMiddleware, createStore, AnyAction, ThunkAction, Action } from '@reduxjs/toolkit';
+import { createWrapper } from 'next-redux-wrapper';
 
-import { userReducer, authReducer } from './reducers';
+import { userReducer, authReducer, categoryReducer } from './reducers';
 
 const rootReducers = combineReducers({
-    userReducer,
-    authReducer
+  userReducer,
+  authReducer,
+  categoryReducer,
 });
 
 export const store = configureStore({
-    reducer: rootReducers,
-    middleware: getDefaultMiddleware => getDefaultMiddleware({
-        thunk: {
-            extraArgument: thunk
-        }
-    })
+  reducer: rootReducers,
+  middleware: getDefaultMiddleware => getDefaultMiddleware({
+    serializableCheck: false
+  })
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+export const wrapper = createWrapper(()=> store);
+
 export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>;

@@ -1,3 +1,3 @@
-export interface ResetPasswordDto {
+export type ResetPasswordDto = {
     email: string;
 }

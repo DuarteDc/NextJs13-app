@@ -10,7 +10,7 @@ export const useAuth = () => {
 
     const router = useRouter();
 
-    const [loading, setLoading] = useState(false);
+    const [ loading, setLoading ] = useState(false);
 
     const { signIn, signInByGoogle, forgotPassword } = authService();
 

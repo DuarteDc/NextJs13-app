@@ -13,7 +13,7 @@ import { errorNotification, successNotification } from '../alerts/alerts';
 export const signIn = (loginDto: LoginDto): ThunkAction<object, RootState, unknown, AnyAction> =>
     async dispatch => {
         try {
-            const { token, user } = await http.post<LoginResponseDto, LoginDto>('/auth/login', loginDto);
+            const { token, user } = await http.post<LoginResponseDto>('/auth/login', loginDto);
             dispatch(login(new User(user._id, user.name, user.last_name, user.email)));
             setCookie('token', token);
         } catch (error) {
@@ -24,7 +24,7 @@ export const signIn = (loginDto: LoginDto): ThunkAction<object, RootState, unkno
 export const signInByGoogle = (loginUserByGoogleDto: LoginUserByGoogleDto): ThunkAction<object, RootState, unknown, AnyAction> =>
     async dispatch => {
         try {
-            const { token, user } = await http.post<LoginResponseDto, any>('/auth/login-google', undefined, loginUserByGoogleDto);
+            const { token, user } = await http.post<LoginResponseDto>('/auth/login-google', undefined, loginUserByGoogleDto);
             dispatch(login(new User(user._id, user.name, user.last_name, user.email)));
             setCookie('token', token);
         } catch (error) {
@@ -35,7 +35,7 @@ export const signInByGoogle = (loginUserByGoogleDto: LoginUserByGoogleDto): Thun
 export const forgotPassword = (resetPasswordDto: ResetPasswordDto): ThunkAction<object, RootState, unknown, AnyAction> =>
     async dispatch => {
         try {
-            const { message } = await http.post<any, ResetPasswordDto>('/auth/forgot-password', resetPasswordDto);
+            const { message } = await http.post<any>('/auth/forgot-password', resetPasswordDto);
             successNotification(message);
             return true;
         } catch (error) {
@@ -45,7 +45,7 @@ export const forgotPassword = (resetPasswordDto: ResetPasswordDto): ThunkAction<
 
 export const signInNextAuth = async (loginDto: LoginDto): Promise<LoginResponseDto | undefined> => {
     try {
-        const response = await http.post<LoginResponseDto, LoginDto>('/auth/login', loginDto);
+        const response = await http.post<LoginResponseDto>('/auth/login', loginDto);
         return response;
     } catch (error) {
         console.log(error);

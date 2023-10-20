@@ -1,3 +1,3 @@
-export interface LoginUserByGoogleDto {
+export type LoginUserByGoogleDto = {
     ['authorization-google-token']: String;
 }

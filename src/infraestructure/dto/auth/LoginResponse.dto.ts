@@ -1,6 +1,6 @@
 import { UserDto } from '../User.dto';
 
-export interface LoginResponseDto {
+export type LoginResponseDto = {
     user    : UserDto;
     token   : string;
 }
