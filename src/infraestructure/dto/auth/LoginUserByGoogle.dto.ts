@@ -1,3 +1,3 @@
 export type LoginUserByGoogleDto = {
-    ['authorization-google-token']: String;
+    ['authorization-google-token']: string;
 }

@@ -3,7 +3,8 @@ import GoogleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
 import Credentials from 'next-auth/providers/credentials';
 
-import { signInNextAuth } from '@/infraestructure/repositories/auth.repository';
+import { signInNextAuth, signInByGoogle } from '@/infraestructure/repositories/auth.repository';
+import { LoginResponseDto } from '@/infraestructure/dto/auth';
 
 const authOptions: AuthOptions = {
     pages: {
@@ -12,14 +13,25 @@ const authOptions: AuthOptions = {
     callbacks: {
         async jwt({ token, account, user }) {
             if (account) {
-                token.accessToken = account.access_token;
-                token.user = user;
+                switch (account.type) {
+                    case 'oauth':
+                        const { user, token: tokenUser } = await signInByGoogle({ "authorization-google-token": account.id_token! }) as LoginResponseDto
+                        token.user = user;
+                        token.accessToken = tokenUser;
+                        break;
+                    case 'credentials':
+                        token.user = user;
+                        token.accessToken = account.access_token;
+                        break;
+                }
             }
             return token;
         },
+
         async session({ session, token, user }) {
-            // session['accessToken']! = token.accessToken;
+            session.accessToken = token.accessToken;
             session.user = token.user as any;
+
             return session;
         }
     },

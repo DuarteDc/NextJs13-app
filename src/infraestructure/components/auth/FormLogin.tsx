@@ -4,13 +4,13 @@ import Link from 'next/link';
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { Input } from '../ui/Input';
-import { EmailIcon, EyeOff } from '../ui/icons';
-
 import { useAuth } from '@/domain/hooks/useAuth';
 import { LoginDto } from '@/infraestructure/dto/auth';
+
 import { loginAuthValidation } from '@/domain/validations/auth/auth.validations';
+
 import { signIn } from 'next-auth/react';
+import { Input } from '../ui/Input';
 
 export const FormLogin = () => {
 

@@ -21,19 +21,16 @@ export const signIn = (loginDto: LoginDto): ThunkAction<object, RootState, unkno
         }
     }
 
-export const signInByGoogle = (loginUserByGoogleDto: LoginUserByGoogleDto): ThunkAction<object, RootState, unknown, AnyAction> =>
-    async dispatch => {
+export const signInByGoogle = async (loginUserByGoogleDto: LoginUserByGoogleDto) => {
         try {
-            const { token, user } = await http.post<LoginResponseDto>('/auth/login-google', undefined, loginUserByGoogleDto);
-            dispatch(login(new User(user._id, user.name, user.last_name, user.email)));
-            setCookie('token', token);
+            return await http.post<LoginResponseDto>('/auth/login-google', undefined, loginUserByGoogleDto);
+            // setCookie('token', token);
         } catch (error) {
             console.log(error)
         }
     }
 
-export const forgotPassword = (resetPasswordDto: ResetPasswordDto): ThunkAction<object, RootState, unknown, AnyAction> =>
-    async dispatch => {
+export const forgotPassword = async(resetPasswordDto: ResetPasswordDto) => {
         try {
             const { message } = await http.post<any>('/auth/forgot-password', resetPasswordDto);
             successNotification(message);
@@ -43,11 +40,10 @@ export const forgotPassword = (resetPasswordDto: ResetPasswordDto): ThunkAction<
         }
     }
 
-export const signInNextAuth = async (loginDto: LoginDto): Promise<LoginResponseDto | undefined> => {
+export const signInNextAuth = async (loginDto: LoginDto) => {
     try {
-        const response = await http.post<LoginResponseDto>('/auth/login', loginDto);
-        return response;
+        return await http.post<LoginResponseDto>('/auth/login', loginDto);
     } catch (error) {
-        console.log(error);
+        return errorNotification(error as string);
     }
 }

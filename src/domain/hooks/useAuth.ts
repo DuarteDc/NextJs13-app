@@ -9,12 +9,11 @@ import { LoginDto, LoginUserByGoogleDto, ResetPasswordDto } from '@/infraestruct
 export const useAuth = () => {
 
     const router = useRouter();
+    const dispatch = useAppDispatch();
 
     const [ loading, setLoading ] = useState(false);
 
-    const { signIn, signInByGoogle, forgotPassword } = authService();
-
-    const dispatch = useAppDispatch();
+    const { signIn, forgotPassword } = authService();
 
     const loginUser = async (loginDto: LoginDto) => {
         setLoading(true);
@@ -22,18 +21,18 @@ export const useAuth = () => {
         setLoading(false);
     }
 
-    const loginUserByGoogle = async (loginUserByGoogleDto: LoginUserByGoogleDto) => await dispatch(signInByGoogle(loginUserByGoogleDto));
+    // const loginUserByGoogle = async (loginUserByGoogleDto: LoginUserByGoogleDto) => await dispatch(signInByGoogle(loginUserByGoogleDto));
 
     const resetPassword = async (resetPasswordDto: ResetPasswordDto) => {
         setLoading(true);
-        if ( await dispatch(forgotPassword(resetPasswordDto)) ) 
+        if ( await forgotPassword(resetPasswordDto) )
             return router.push('/auth/signin')
         setLoading(false)
     }
 
     return {
         loginUser,
-        loginUserByGoogle,
+        // loginUserByGoogle,
         resetPassword,
         loading
     }
