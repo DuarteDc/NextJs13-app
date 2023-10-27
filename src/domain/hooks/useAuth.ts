@@ -6,12 +6,15 @@ import { useAppDispatch } from '@/infraestructure/store/hooks';
 
 import { LoginDto, LoginUserByGoogleDto, ResetPasswordDto } from '@/infraestructure/dto/auth';
 
+import { SignInOptions, signIn as signInNextAuth } from 'next-auth/react';
+import { errorNotification } from '@/infraestructure/alerts/alerts';
+
 export const useAuth = () => {
 
     const router = useRouter();
     const dispatch = useAppDispatch();
 
-    const [ loading, setLoading ] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const { signIn, forgotPassword } = authService();
 
@@ -21,18 +24,27 @@ export const useAuth = () => {
         setLoading(false);
     }
 
-    // const loginUserByGoogle = async (loginUserByGoogleDto: LoginUserByGoogleDto) => await dispatch(signInByGoogle(loginUserByGoogleDto));
+    const signInByCredentials = async (options: SignInOptions) => {
+        setLoading(true)
+        const response = await signInNextAuth('credentials', options);
+        if (response?.ok) return router.push('/');
+        errorNotification('El usuario o contraseña no son correctos');
+        setLoading(false)
+
+    }
 
     const resetPassword = async (resetPasswordDto: ResetPasswordDto) => {
         setLoading(true);
-        if ( await forgotPassword(resetPasswordDto) )
+        if (await forgotPassword(resetPasswordDto))
             return router.push('/auth/signin')
-        setLoading(false)
+
+        return setLoading(false)
+
     }
 
     return {
         loginUser,
-        // loginUserByGoogle,
+        signInByCredentials,
         resetPassword,
         loading
     }

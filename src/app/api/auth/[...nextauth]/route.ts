@@ -1,43 +1,44 @@
-import NextAuth, { AuthOptions } from 'next-auth'
+import NextAuth, { AuthOptions, Session } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
 import Credentials from 'next-auth/providers/credentials';
 
 import { signInNextAuth, signInByGoogle } from '@/infraestructure/repositories/auth.repository';
 import { LoginResponseDto } from '@/infraestructure/dto/auth';
+import { type User } from '@/domain/models/User';
 
 const authOptions: AuthOptions = {
     pages: {
         signIn: '/auth/signin'
     },
     callbacks: {
+
         async jwt({ token, account, user }) {
             if (account) {
                 switch (account.type) {
                     case 'oauth':
-                        const { user, token: tokenUser } = await signInByGoogle({ "authorization-google-token": account.id_token! }) as LoginResponseDto
-                        token.user = user;
-                        token.accessToken = tokenUser;
+                        const response = await signInByGoogle({ "authorization-google-token": account.id_token! });
+                        token.user = response!.user;
+                        token.accessToken = response!.token;
                         break;
                     case 'credentials':
-                        token.user = user;
-                        token.accessToken = account.access_token;
+                        token.user = user!.user;
+                        token.accessToken = user.token
                         break;
                 }
             }
             return token;
         },
 
-        async session({ session, token, user }) {
-            session.accessToken = token.accessToken;
-            session.user = token.user as any;
-
+        async session({ session, token }) {
+            session.token = token.accessToken;
+            session.user = token.user as User;
             return session;
         }
     },
     providers: [
         Credentials({
-            name: 'Custom Login',
+            name: 'Credentials',
             credentials: {
                 email: {
                     label: "email",
@@ -46,28 +47,15 @@ const authOptions: AuthOptions = {
                 },
                 password: { label: "password", type: "password" },
             },
-            async authorize(credentials) {
-                const { user, token } = await signInNextAuth({ email: credentials!.email, password: credentials!.password });
-                return {
-                    ...user,
-                    token
-                };
+            authorize: async (credentials): Promise<any> => {
+                return await signInNextAuth({ email: credentials!.email, password: credentials!.password })
             },
         })
         ,
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID as string,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-            idToken: true,
-            checks: ["pkce", "state"],
-            async profile(profile) {
-                return {
-                    id: profile.sub,
-                    name: profile.name,
-                    email: profile.email,
-                    image: profile.picture,
-                }
-            }
+            idToken: true
         }),
         FacebookProvider({
             clientId: process.env.GOOGLE_CLIENT_ID as string,

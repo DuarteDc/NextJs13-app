@@ -23,10 +23,13 @@ export const signIn = (loginDto: LoginDto): ThunkAction<object, RootState, unkno
 
 export const signInByGoogle = async (loginUserByGoogleDto: LoginUserByGoogleDto) => {
         try {
-            return await http.post<LoginResponseDto>('/auth/login-google', undefined, loginUserByGoogleDto);
-            // setCookie('token', token);
+            const { token, user } = await http.post<LoginResponseDto>('/auth/login-google', undefined, loginUserByGoogleDto);
+            return {
+                user: new User(user._id, user.name, user.last_name, user.email),
+                token
+            } 
         } catch (error) {
-            console.log(error)
+            return errorNotification(error as string);
         }
     }
 
@@ -42,7 +45,11 @@ export const forgotPassword = async(resetPasswordDto: ResetPasswordDto) => {
 
 export const signInNextAuth = async (loginDto: LoginDto) => {
     try {
-        return await http.post<LoginResponseDto>('/auth/login', loginDto);
+        const { user, token } =  await http.post<LoginResponseDto>('/auth/login', loginDto);
+        return {                
+            user: new User(user._id, user.name, user.last_name, user.email),
+            token
+        }
     } catch (error) {
         return errorNotification(error as string);
     }

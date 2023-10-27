@@ -9,16 +9,17 @@ import { LoginDto } from '@/infraestructure/dto/auth';
 
 import { loginAuthValidation } from '@/domain/validations/auth/auth.validations';
 
-import { signIn } from 'next-auth/react';
+
 import { Input } from '../ui/Input';
+import { IconLoader } from '../ui/loaders/IconLoader';
 
 export const FormLogin = () => {
 
+    const { loading, signInByCredentials } = useAuth();
     const { register, handleSubmit, formState: { errors } } = useForm<LoginDto>({ resolver: yupResolver(loginAuthValidation) });
 
-    const onSubmit: SubmitHandler<LoginDto> = ({ email, password }) => signIn('credentials', { email, password });
+    const onSubmit: SubmitHandler<LoginDto> = ({ email, password }) => signInByCredentials({ email, password, redirect: false });
 
-    const { loading } = useAuth();
 
     return (
         <form className="lg:mb-40 mt-10" onSubmit={handleSubmit(onSubmit)} method="post">
@@ -47,8 +48,9 @@ export const FormLogin = () => {
                 className="rounded-md mb-10 mt-5 lg:py-6 py-4 bg-rose-700 w-full font-bold hover:bg-rose-600 transition-all ease-out duration-150"
                 disabled={loading}
             >
-                {!loading ? 'Login' : 'cargando'}
+                Iniciar Sesión
             </button>
+            { loading && <IconLoader />}
         </form>
     )
 }
