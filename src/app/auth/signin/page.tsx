@@ -13,13 +13,13 @@ export default function SignIn() {
                 <div className="flex flex-col items-center mb-10">
                     <h1 className="font-bold text-5xl lg:text-7xl lg:mb-10">Iniciar Sesión</h1>
                     <span className="flex [&>button]:mx-2 lg:my-10 mt-8 [&>button]:text-xs [&>button]:md:text-base [&>button]:lg:py-6">
-                        <button onClick={() => signIn("google")} className="py-4 border-white border-2 lg:px-5 px-2 rounded-md flex justify-center items-center lg:w-[300px] cursor-pointer hover:bg-white transition-all duration-700 ease-in-out hover:text-black w-full">
+                        <button onClick={() => signIn("google")} className="py-4 border-white border-2 lg:px-5 px-2 rounded-md flex flex-col justify-center items-center lg:w-[300px] cursor-pointer hover:bg-white transition-all duration-700 ease-in-out hover:text-black w-full">
                             <GoogleIcon />
                             Iniciar con Google
                         </button>
-                        <button onClick={() => signIn("facebook")} className="py-4 border-white border-2 lg:px-5 px-2 rounded-md flex justify-center items-center lg:w-[300px] cursor-pointer hover:bg-white transition-all duration-700 ease-in-out hover:text-black w-full">
+                        <button onClick={() => signIn("facebook")} className="py-4 border-white border-2 lg:px-5 px-2 rounded-md flex flex-col justify-center items-center lg:w-[300px] cursor-pointer hover:bg-white transition-all duration-700 ease-in-out hover:text-black w-full">
                             <FacebookIcon />
-                            Iniciar with Facebook
+                            Iniciar con Facebook
                         </button>
                     </span>
                 </div>

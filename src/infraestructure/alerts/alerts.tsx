@@ -5,10 +5,10 @@ const errorNotification = (message: string) => {
   toast.custom(( { visible, id } ) => (
     <div
       className={`${visible ? 'animate-enter' : 'animate-leave'
-        } max-w-md w-full bg-gradient-to-r from-red-900 from-5% via-zinc-800 to-zinc-900 to-80% shadow-lg rounded-lg font-bold pointer-events-auto flex text-white py-3 px-4`}
+        } max-w-md w-full bg-gradient-to-r from-red-600 from-15% via-zinc-800 to-zinc-900 to-80% shadow-lg rounded-lg font-bold pointer-events-auto flex text-white py-3 px-4`}
     >
       <div className="flex items-center w-full relative">
-        <span className="p-1 bg-red-800 mr-2 rounded-lg text-red-300">
+        <span className="p-1 bg-red-500 mr-2 rounded-lg text-red-100">
           <ErrorIcon />
         </span>
         <div>
@@ -30,10 +30,10 @@ const successNotification = (message: string) => {
   toast.custom((t) => (
     <div
       className={`${t.visible ? 'animate-enter' : 'animate-leave'
-        } max-w-md w-full bg-gradient-to-r from-green-900 from-5% via-zinc-800 to-zinc-900 to-80% shadow-lg rounded-lg font-bold pointer-events-auto flex text-white py-3 px-4`}
+        } max-w-md w-full bg-gradient-to-r from-green-600 from-15%  via-zinc-800 to-zinc-900 to-80% shadow-lg rounded-lg font-bold pointer-events-auto flex text-white py-3 px-4`}
     >
       <div className="flex items-center w-full justify-between relative">
-        <span className="p-1 bg-green-800 rounded-lg text-green-300">
+        <span className="p-1 bg-green-500 rounded-lg text-green-100">
           <DoneIcon />
         </span>
         <div className="px-2">
@@ -50,7 +50,13 @@ const successNotification = (message: string) => {
   ))
 }
 
+
+const successAlert = ( message: string ) => toast.success(message, { style: {
+  background: "#333",
+  color: 'white'
+}})
 export {
   errorNotification,
-  successNotification
+  successNotification,
+  successAlert
 }

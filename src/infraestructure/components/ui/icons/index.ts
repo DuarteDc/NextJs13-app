@@ -5,3 +5,5 @@ export { ErrorIcon } from './ErrorIcon';
 export { EyeOff } from './EyeOff';
 export { FacebookIcon } from './FacebookIcon';
 export { GoogleIcon } from './GoogleIcon';
+export { HeartIcon } from './HeartIcon';
+export { ShareIcon } from './ShareIcon';

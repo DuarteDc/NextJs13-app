@@ -14,10 +14,10 @@ export const useAuth = () => {
     const router = useRouter();
     const dispatch = useAppDispatch();
 
-    const [loading, setLoading] = useState(false);
+    const [ loading, setLoading ] = useState(false);
 
     const { signIn, forgotPassword } = authService();
-
+ 
     const loginUser = async (loginDto: LoginDto) => {
         setLoading(true);
         await dispatch(signIn(loginDto));
@@ -35,11 +35,8 @@ export const useAuth = () => {
 
     const resetPassword = async (resetPasswordDto: ResetPasswordDto) => {
         setLoading(true);
-        if (await forgotPassword(resetPasswordDto))
-            return router.push('/auth/signin')
-
-        return setLoading(false)
-
+        if (await forgotPassword(resetPasswordDto)) return router.push('/auth/signin')
+        setLoading(false)
     }
 
     return {

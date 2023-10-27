@@ -4,9 +4,8 @@ const nextConfig = {
         remotePatterns: [
              {
                  protocol: 'https',
-                 hostname: 'nextui.org',
+                 hostname: 'api.api-ninjas.com',
                  port: '',
-                 pathname: '/images/**',
              }
         ]
     }

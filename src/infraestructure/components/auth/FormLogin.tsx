@@ -20,7 +20,6 @@ export const FormLogin = () => {
 
     const onSubmit: SubmitHandler<LoginDto> = ({ email, password }) => signInByCredentials({ email, password, redirect: false });
 
-
     return (
         <form className="lg:mb-40 mt-10" onSubmit={handleSubmit(onSubmit)} method="post">
             <Input
