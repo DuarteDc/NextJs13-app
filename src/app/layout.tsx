@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import { AuthProvider } from './providers/AuthProvider'
 import { StoreProvider } from '@/infraestructure/store/provider/StoreProvider'
 import { Toaster } from 'react-hot-toast'
+import { Navbar } from '@/infraestructure/components/ui/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,6 +16,7 @@ function RootLayout({ children, }: { children: React.ReactNode }) {
 
   return (
     <html lang="es">
+      <Navbar />
       <body className={`${inter.className} bg-slate-950 text-white min-h-screen px-5`}>
         <AuthProvider>
           <StoreProvider>

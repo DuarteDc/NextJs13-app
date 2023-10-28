@@ -6,4 +6,6 @@ export { EyeOff } from './EyeOff';
 export { FacebookIcon } from './FacebookIcon';
 export { GoogleIcon } from './GoogleIcon';
 export { HeartIcon } from './HeartIcon';
+export { MoonIcon } from './MoonIcon';
+export { SearchIcon } from './SearchIcon';
 export { ShareIcon } from './ShareIcon';

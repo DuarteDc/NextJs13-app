@@ -8,6 +8,6 @@ export const shareProduct = () => {
             url: document.location + ''
         })
     }
-    navigator.clipboard.writeText(document.location + '');
+    navigator?.clipboard?.writeText(document.location + '');
     successAlert('Producto copiado en el porta papeles')
 }

@@ -17,8 +17,8 @@ export default function Home() {
         </span>
       </header>
       <section className="w-full xl:px-60 pt-[300px] max-w-[2500px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 [&>div]:border-[3px] [&>div]:border-slate-800 hover:[&>div]:transition-all hover:[&>div]:ease-linear hover:[&>div]:duration-200 hover:[&>div]:border-rose-800/80 [&>div]:cursor-pointer">
-          <div className="bg-slate-800/40 w-full rounded-xl h-[300px] relative p-10 text-rose-600">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 [&>div]:border-[3px] [&>div]:border-slate-800 hover:[&>div]:transition-all hover:[&>div]:ease-linear hover:[&>div]:duration-200 hover:[&>div]:border-blue-800/80 [&>div]:cursor-pointer">
+          <div className="bg-slate-800/40 w-full rounded-xl h-[300px] relative p-10 text-blue-600">
             <DoneIcon height={40} width={40} />
             <span className="text-white">
               <h3 className="text-2xl font-bold my-5">Devices</h3>
@@ -26,14 +26,14 @@ export default function Home() {
             </span>
           </div>
 
-          <div className="bg-slate-800/40 w-full rounded-xl h-[300px] relative p-10 text-rose-600">
+          <div className="bg-slate-800/40 w-full rounded-xl h-[300px] relative p-10 text-blue-600">
             <DoneIcon height={40} width={40} />
             <span className="text-white">
               <h3 className="text-2xl font-bold my-5">Devices</h3>
               <p className="text-gray-400">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis!</p>
             </span>
           </div>
-          <div className="bg-slate-800/40 w-full rounded-xl h-[300px] relative p-10 text-rose-600">
+          <div className="bg-slate-800/40 w-full rounded-xl h-[300px] relative p-10 text-blue-600">
             <DoneIcon height={40} width={40} />
             <span className="text-white">
               <h3 className="text-2xl font-bold my-5">Devices</h3>
