@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { MoonIcon, SearchIcon } from "./icons"
+import { CartIcon, HeartIcon, SearchIcon } from "./icons"
 
 export const Navbar = () => {
   return (
@@ -10,17 +10,20 @@ export const Navbar = () => {
         </Link>
       </div>
       <ul className="flex [&>li]:px-4 font-semibold [&>li]:hover:transition-colors [&>li]:hover:duration-200 [&>li]:hover:ease-in [&>li]:cursor-pointer">
-        <li className="hover:text-indigo-600">Inicio</li>
-        <li className="hover:text-rose-600">Productos</li>
-        <li className="hover:text-rose-600">Categorias</li>
-        <li className="hover:text-rose-600">Nosotros</li>
+        <li className="hover:text-blue-600">Inicio</li>
+        <li className="hover:text-blue-600">Productos</li>
+        <li className="hover:text-blue-600">Categorias</li>
+        <li className="hover:text-blue-600">Nosotros</li>
       </ul>
       <div className="flex items-center [&>span]:mx-2">
         <span className="p-2 hover:bg-slate-900 rounded-md transition-all duration-200 ease-in">
           <SearchIcon width={20} height={20} />
         </span>
         <span className="p-2 hover:bg-slate-900 rounded-md transition-all duration-200 ease-in">
-          <MoonIcon width={20} height={20} />
+          <CartIcon width={22} height={22} />
+        </span>
+        <span className="p-2 hover:bg-slate-900 rounded-md transition-all duration-200 ease-in">
+          <HeartIcon width={20} height={20} />
         </span>
       </div>
     </nav>

@@ -9,11 +9,8 @@ export default function Home() {
     <main className="min-h-screen bg-slate-950">
       <header className="flex items-center min-h-[600px] px-40  max-w-[2500px] mx-auto">
         <span className="w-1/2 [&>h2]:my-20">
-          <h1 className="text-9xl font-bold mt-40">Lorem ipsum <p className="text-rose-600">dolor sit</p></h1>
+          <h1 className="text-9xl font-bold mt-40">Lorem ipsum <p className="text-blue-600">dolor sit</p></h1>
           <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, officiis?</h2>
-          <button className="px-16 py-4 bg-rose-600 rounded-md">
-            Show More
-          </button>
         </span>
       </header>
       <section className="w-full xl:px-60 pt-[300px] max-w-[2500px] mx-auto">

@@ -1,4 +1,5 @@
 export { ArrowRight } from './ArrowRight';
+export { CartIcon } from './CartIcon';
 export { DoneIcon } from './DoneIcon';
 export { EmailIcon } from './EmailIcon';
 export { ErrorIcon } from './ErrorIcon';

@@ -1,10 +1,12 @@
 import { ProductOptions } from "@/infraestructure/components/product/ProductOptions";
+import { Input } from "@/infraestructure/components/ui/Input";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Product() {
 
     const arra = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+    const img = [1, 2, 3, 4, 5, 6 ,7 ];
 
     return (
         <main className="min-h-screen mt-40">
@@ -23,12 +25,18 @@ export default async function Product() {
                         <h1 className="text-3xl lg:text-7xl font-bold my-10">Lorem ipsum dolor sit amet</h1>
                         <div className=" flex flex-col justify-center">
                             <p className="text-base lg:text-xl text-gray-400 mb-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet ex iusto dignissimos nobis. Voluptates, nesciunt aliquam deserunt quibusdam nam exercitationem adipisci</p>
-                            <span className="text-xl lg:text-2xl text-rose-600 my-2 font-bold">$5000</span>
-                            {/* <div className="mt-5">
-                            <button className="border-rose-600/40 border-[2.5px] px-10 py-3 rounded-md cursor-pointer bg-rose-600/80 transition-all ease-in duration-200 font-bold">
-                            Agregar
-                            </button>
-                        </div> */}
+                            <span className="text-xl lg:text-2xl text-blue-600 my-2 font-bold">$5000</span>
+                            <span className="flex items-center my-20 h-16 overflow-hidden">
+                                <button className="bg-blue-600 px-6 h-14 rounded-md mx-2 font-bold"> + </button>
+                                <input type="text" className="h-14 w-28 bg-slate-800" />
+                                <button className="bg-blue-600 px-6 h-14 rounded-md mx-2 font-bold"> + </button>
+                            </span>
+                            <div className="flex [&>button]:transition-all [&>button]:ease-out [&>button]:duration-50 [&>button]:mx-4 [&>button]:font-bold">
+                                <button className="bg-blue-600 px-6 py-4 rounded-full border-2 border-blue-600 hover:bg-blue-500">
+                                    Agregar al carrito
+                                </button>
+                                <button className="border-2 px-6 py-4 rounded-full border-blue-600 hover:bg-blue-600">Comprar ahora</button>
+                            </div>
                         </div>
                     </div>
                 </div>
